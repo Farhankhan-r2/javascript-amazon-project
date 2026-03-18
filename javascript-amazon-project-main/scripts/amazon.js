@@ -1,4 +1,4 @@
-/*since there are multiple products we are going to use array and each product has mulptiple data like image price etc we  gonna put it in object*/
+/*since there are multiple products we are going to use array and each product has mulptiple data like image price etc we  gonna put it in object
 const products = [{
   image: 'images/products/athletic-cotton-socks-6-pairs.jpg',
   name: 'Black and Gray Athletic Cotton Socks - 6 Pairs',
@@ -24,6 +24,9 @@ const products = [{
   },
   priceCents: 799,
 }];
+
+since the data file already contain array we are gonna use it
+*/
 
 /*this is called datastructure because it organises our data and give it a stucture we usually use a combination of arrays and objects to create a datastructure in js*/
 let productsHTML = '';
@@ -72,12 +75,40 @@ products.forEach((product) => {
           Added
         </div>
 
-        <button class="add-to-cart-button button-primary">
+        <button class="add-to-cart-button button-primary js-add-to-cart"
+        data-product-id= "${product.id}">
           Add to Cart
         </button>
       </div>`;
-  console.log(productsHTML);
 
-  document.querySelector('.products-grid').innerHTML = productsHTML;
+});
 
+document.querySelector('.products-grid').innerHTML = productsHTML;
+
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+  button.addEventListener('click', () => {
+    const productId = button.dataset.productId;
+    //name is converted from kebab-case to camelCase 
+
+    let matchingItem;
+
+    cart.forEach((item) => {
+      if (productId === item.productId) {
+        matchingItem = item;
+      }
+    });
+    //since if we find matching item it will be an object which is a truthy value
+    if (matchingItem) {
+      matchingItem.quantity += 1;
+    } else {
+      cart.push({
+        productId: productId,
+        quantity: 1
+      });
+
+    }
+
+
+    console.log(cart);
+  });
 });
