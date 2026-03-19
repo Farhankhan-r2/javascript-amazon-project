@@ -1,3 +1,4 @@
+
 /*since there are multiple products we are going to use array and each product has mulptiple data like image price etc we  gonna put it in object
 const products = [{
   image: 'images/products/athletic-cotton-socks-6-pairs.jpg',
@@ -29,6 +30,14 @@ since the data file already contain array we are gonna use it
 */
 
 /*this is called datastructure because it organises our data and give it a stucture we usually use a combination of arrays and objects to create a datastructure in js*/
+// i forgot that foreach take two parameter one is value and the other is index i got confused because of that..
+import { cart, addToCart } from '../data/cart.js';
+import { products } from '../data/products.js';
+
+
+
+
+
 let productsHTML = '';
 products.forEach((product) => {
   productsHTML +=
@@ -85,30 +94,23 @@ products.forEach((product) => {
 
 document.querySelector('.products-grid').innerHTML = productsHTML;
 
+
+function updateCartQuantity() {
+  let cartQuantity = 0;
+  cart.forEach((item) => {
+    cartQuantity += item.quantity;
+  });
+
+  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
+}
+
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
     const productId = button.dataset.productId;
     //name is converted from kebab-case to camelCase 
+    addToCart(productId);
+    updateCartQuantity();
 
-    let matchingItem;
-
-    cart.forEach((item) => {
-      if (productId === item.productId) {
-        matchingItem = item;
-      }
-    });
-    //since if we find matching item it will be an object which is a truthy value
-    if (matchingItem) {
-      matchingItem.quantity += 1;
-    } else {
-      cart.push({
-        productId: productId,
-        quantity: 1
-      });
-
-    }
-
-
-    console.log(cart);
   });
 });

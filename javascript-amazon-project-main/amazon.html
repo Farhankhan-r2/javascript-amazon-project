@@ -45,7 +45,7 @@
 
       <a class="cart-link header-link" href="checkout.html">
         <img class="cart-icon" src="images/icons/cart-icon.png">
-        <div class="cart-quantity">3</div>
+        <div class="cart-quantity js-cart-quantity">0</div>
         <div class="cart-text">Cart</div>
       </a>
     </div>
@@ -60,10 +60,21 @@
 
     </div>
   </div>
+  <!-- we are using multiple js file this can causse a conflict like when we create a same variale in  two files this can lead to error here modules comes in play 
+   modules basically contain a variable inside a file ..then it will not cause a conflict outside the file
+   ---TO USE MODULES
+   1. WHERE U NEED TO USE MODULE DECLARE ITS TYPE AS MODULE
+   2. THE  VARIABLE U WANT TO USE OUTSIDE THE FILE TYPE export infront of the const let 
+   3. USE import {variable name} from 'its location from the folder where u re importing to represent the outside of this folder use ..then where it is locted in main folder';
+   
   <script src="data/cart.js"></script>
   <script src="data/products.js"></script>
   <script src="scripts/amazon.js"></script>
+  -->
 
+
+  <script type="module" src="scripts/amazon.js"></script>
+  <!--this file called the entry point since other js can be used through it -->
 </body>
 
 </html>
