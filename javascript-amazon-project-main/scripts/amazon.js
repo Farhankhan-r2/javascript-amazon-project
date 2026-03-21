@@ -33,6 +33,7 @@ since the data file already contain array we are gonna use it
 // i forgot that foreach take two parameter one is value and the other is index i got confused because of that..
 import { cart, addToCart, updateCartQuantity } from '../data/cart.js';
 import { products } from '../data/products.js';
+import { formatCurrency } from './utils/money.js';
 
 
 
@@ -59,7 +60,7 @@ products.forEach((product) => {
         </div>
 
         <div class="product-price">
-          $${(product.priceCents / 100).toFixed(2)}
+          $${formatCurrency(product.priceCents)}
         </div>
 
         <div class="product-quantity-container">
