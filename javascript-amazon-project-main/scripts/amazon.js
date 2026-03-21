@@ -31,7 +31,7 @@ since the data file already contain array we are gonna use it
 
 /*this is called datastructure because it organises our data and give it a stucture we usually use a combination of arrays and objects to create a datastructure in js*/
 // i forgot that foreach take two parameter one is value and the other is index i got confused because of that..
-import { cart, addToCart } from '../data/cart.js';
+import { cart, addToCart, updateCartQuantity } from '../data/cart.js';
 import { products } from '../data/products.js';
 
 
@@ -95,15 +95,7 @@ products.forEach((product) => {
 document.querySelector('.products-grid').innerHTML = productsHTML;
 
 
-function updateCartQuantity() {
-  let cartQuantity = 0;
-  cart.forEach((item) => {
-    cartQuantity += item.quantity;
-  });
 
-  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
-
-}
 
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
